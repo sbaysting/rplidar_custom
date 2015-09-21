@@ -1,0 +1,48 @@
+# depslib dependency file v1.0
+1442876016 source:/home/samuel/rplidar_custom/main.cpp
+	"rplidar_api.h"
+
+1394263700 /home/samuel/rplidar_custom/rplidar_sdk_v1.4.5/sdk/sdk/include/rplidar.h
+	"rptypes.h"
+	"rplidar_protocol.h"
+	"rplidar_cmd.h"
+	"rplidar_driver.h"
+
+1394263700 /home/samuel/rplidar_custom/rplidar_sdk_v1.4.5/sdk/sdk/include/rptypes.h
+	<stdint.h>
+
+1406268348 /home/samuel/rplidar_custom/rplidar_sdk_v1.4.5/sdk/sdk/include/rplidar_protocol.h
+
+1406268348 /home/samuel/rplidar_custom/rplidar_sdk_v1.4.5/sdk/sdk/include/rplidar_cmd.h
+	"rplidar_protocol.h"
+
+1442874007 /home/samuel/rplidar_custom/rplidar_sdk_v1.4.5/sdk/sdk/include/rplidar_driver.h
+	<stdio.h>
+	<stdlib.h>
+
+1442876809 source:/home/samuel/rplidar_custom/rplidar_api.cpp
+	"rplidar_api.h"
+	<stdio.h>
+	<stdlib.h>
+
+1394263700 /home/samuel/rplidar_custom/rplidar.h
+	"rptypes.h"
+	"rplidar_protocol.h"
+	"rplidar_cmd.h"
+	"rplidar_driver.h"
+
+1394263700 /home/samuel/rplidar_custom/rptypes.h
+	<stdint.h>
+
+1406268348 /home/samuel/rplidar_custom/rplidar_protocol.h
+
+1406268348 /home/samuel/rplidar_custom/rplidar_cmd.h
+	"rplidar_protocol.h"
+
+1406268348 /home/samuel/rplidar_custom/rplidar_driver.h
+
+1442876809 /home/samuel/rplidar_custom/rplidar_api.h
+	"rplidar_sdk_v1.4.5/sdk/sdk/include/rplidar.h"
+	<stdio.h>
+	<stdlib.h>
+
