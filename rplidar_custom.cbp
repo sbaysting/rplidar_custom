@@ -14,6 +14,10 @@
 				<Compiler>
 					<Add option="-g" />
 				</Compiler>
+				<Linker>
+					<Add option="-pthread" />
+					<Add library="rplidar_sdk_v1.4.5/sdk/output/Linux/Release/librplidar_sdk.a" />
+				</Linker>
 			</Target>
 			<Target title="Release">
 				<Option output="bin/Release/rplidar_custom" prefix_auto="1" extension_auto="1" />
@@ -33,6 +37,13 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="main.cpp" />
+		<Unit filename="rplidar_api.cpp" />
+		<Unit filename="rplidar_api.h" />
+		<Unit filename="rplidar_sdk_v1.4.5/sdk/sdk/include/rplidar.h" />
+		<Unit filename="rplidar_sdk_v1.4.5/sdk/sdk/include/rplidar_cmd.h" />
+		<Unit filename="rplidar_sdk_v1.4.5/sdk/sdk/include/rplidar_driver.h" />
+		<Unit filename="rplidar_sdk_v1.4.5/sdk/sdk/include/rplidar_protocol.h" />
+		<Unit filename="rplidar_sdk_v1.4.5/sdk/sdk/include/rptypes.h" />
 		<Extensions>
 			<envvars />
 			<code_completion />

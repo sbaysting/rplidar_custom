@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1442876016 source:/home/samuel/rplidar_custom/main.cpp
+1442956091 source:/home/samuel/rplidar_custom/main.cpp
 	"rplidar_api.h"
 
 1394263700 /home/samuel/rplidar_custom/rplidar_sdk_v1.4.5/sdk/sdk/include/rplidar.h
@@ -20,7 +20,7 @@
 	<stdio.h>
 	<stdlib.h>
 
-1442876809 source:/home/samuel/rplidar_custom/rplidar_api.cpp
+1442956286 source:/home/samuel/rplidar_custom/rplidar_api.cpp
 	"rplidar_api.h"
 	<stdio.h>
 	<stdlib.h>
