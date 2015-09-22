@@ -1,1 +1,4 @@
-bin/Debug/./rplidar_custom $1 | python static_plot.py
+# Arguments (optional): Number of rotations of data to record and funnel into the plot
+# Example: bash start.sh 10 = 10 rotations to record and plot
+
+python static_plot_standalone.py $1
