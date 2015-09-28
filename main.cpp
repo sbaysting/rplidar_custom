@@ -25,11 +25,11 @@ int main(int argc, const char * argv[]) {
     }
 
     // Run update and display data in a loop
-    int rot_count = 0;
+    //int rot_count = 0;
     while(1){
-        if(rot_count >= rotations){
+        /*if(rot_count >= rotations){
             return 0;
-        }
+        }*/
         if(data->updateData() == true){ // If the data update succeeded
             for (uint pos = 0; pos < data->count ; ++pos) { // Loop through each data node
                 /*printf("%s theta: %03.2f Dist: %08.2f Q: %d \n",
@@ -37,10 +37,10 @@ int main(int argc, const char * argv[]) {
                     data->getTheta(pos), //Display theta value for that node
                     data->getDistance(pos), //Display distance value for that node
                     data->getQuality(pos)); //Display quality value for that node*/
-                printf("%03.2f %08.2f ",data->getTheta(pos),data->getDistance(pos));
+                printf("%03.2f %08.2f \n",data->getTheta(pos),data->getDistance(pos));
             }
         }
-        rot_count++;
+        //rot_count++;
     }
 
 }
