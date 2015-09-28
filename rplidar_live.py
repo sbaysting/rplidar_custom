@@ -11,7 +11,7 @@
 
 ############################    PARAMETERS    ##############################
 
-frame_rate = 15 # Frame update rate in milliseconds
+frame_rate = 10 # Frame update rate in milliseconds
 plot_points = 720 # Number of data points to show on the graph at any given time
 
 ############################################################################
@@ -36,10 +36,19 @@ view = pg.GraphicsLayoutWidget()  ## GraphicsView with GraphicsLayout inserted b
 mw.setCentralWidget(view)
 mw.show() # Show the created GUI
 mw.setWindowTitle('RPLIDAR Live Data Plot')
-w1 = view.addPlot()
+# Create plot and set plot parameters
+w1 = view.addPlot() # Returns a PlotItem object
+w1.showGrid(x=True,y=True)
+w1.setMenuEnabled()
+w1.getViewBox().setXRange(min=-0.8,max=0.8)
+w1.getViewBox().setYRange(min=-1.0,max=1.0)
+w1.setLabel(axis='left',text='Y Distance',units='m')
+w1.setLabel(axis='bottom',text='X Distance',units='m')
+w1.setTitle(title='RPLIDAR Live Data')
 # Create scatter plot
 s1 = pg.ScatterPlotItem(size=3, pen=pg.mkPen(None), brush=pg.mkBrush(255, 0, 0, 120))
 s1.addPoints(x,y)
+# Add scatter plot to the window
 w1.addItem(s1)
 # Create subprocess that starts the RPLIDAR C++ executable
 p = subprocess.Popen('bin/Debug/./rplidar_custom ',shell=True,stdout=subprocess.PIPE)
@@ -51,8 +60,8 @@ def read_data():
         # tmp[0] will be the theta value; tmp[1] will be the distance value
         tmp = np.array(p.stdout.readline().strip().split(), dtype=np.double)
         if len(tmp) == 2:
-            x[count] = tmp[1]*np.sin(np.radians(tmp[0]))
-            y[count] = tmp[1]*np.cos(np.radians(tmp[0]))
+            x[count] = (tmp[1]*np.sin(np.radians(tmp[0])))/1000
+            y[count] = (tmp[1]*np.cos(np.radians(tmp[0])))/1000
             count = count + 1
         if count >= plot_points: # This creates a circular array storage system for x and y values
             count = 0
