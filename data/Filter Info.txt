@@ -1,0 +1,14 @@
+Hampel - Outlier filter
+	- Takes 3 points from each side
+	-  It also estimates the standard deviation of each sample about its window median using the median absolute deviation. If a sample differs from the median by more than three standard deviations, it is replaced with the median
+	- TLDR: Needs 7 points to operate, but tested with 1 on each side and works fine
+
+Moving Average - Curve smoother
+	- Gets reasonably smooth after using 20 points to average
+
+Points in 10 seconds - 4094
+409.4 points per second
+
+What will work: Hampel
+If you want curvy data: Hampel + Moving Average @ 20 points
+

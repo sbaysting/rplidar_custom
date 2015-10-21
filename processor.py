@@ -3,10 +3,7 @@ from reader import ins
 import time
 
 # Global variables
-x_old = 0 # Old x position for the LIDAR
-y_old = 0 # Old y position for the LIDAR
-x_new = 0 # New x position for the LIDAR
-y_new = 0 # New y position for the LIDAR
+
 
 # Connect RPLIDAR and INS Devices
 def connect(rplidar, ins):
@@ -21,12 +18,16 @@ def connect(rplidar, ins):
         exit(1)
     print "Connected to INS!"
 
-# Kalman Filter
-def kalman_filter():
+# Hampel Filter (Removal of Outliers)
+def hampel_filter():
     None
     
-# Moving Average Filter
+# Moving Average Filter (Smoothing out Data)
 def moving_average_filter():
+    None
+    
+# Point correlation to determine if it's similar
+def point_correlate():
     None
     
 # Direction Vector Calculate
@@ -35,7 +36,7 @@ def dir_vector(xold,yold,xnew,ynew):
     
 # Main
 
-rplidar = rplidar(device='/dev/ttyUSB1')
+rplidar = rplidar(device='/dev/ttyUSB0')
 ins = ins(device='/dev/ttyACM0')
 
 connect(rplidar,ins)
