@@ -11,13 +11,17 @@ class rplidar:
     location = 'bin/Debug/./rplidar_custom ' # Path to the RPLIDAR Program
     device = '/dev/ttyUSB0' # Path to serial device
     subproc = None # Contains the subprocess associated with the RPLIDAR Program
+    connected = False
     
     def __init__(self, location = 'bin/Debug/./rplidar_custom ', device = '/dev/ttyUSB0'):
         self.location = location
         self.device = device
         
+    def __del__(self):
+        self.disconnect()
+        
     def connect(self):
-        self.subproc = subprocess.Popen(self.location+self.device,shell=True,stdout=subprocess.PIPE)
+        self.subproc = subprocess.Popen(self.location+self.device,shell=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
         if self.isClosed() == False:
             return True
         return False
@@ -41,9 +45,22 @@ class rplidar:
         return self.subproc.stdout.closed 
     
     def dump(self):
+        error = False
+        def error_read():
+            tmp = self.subproc.stderr.readline()
+            if "health" in tmp or "bind" in tmp:
+                print tmp
+                error = True
+                exit(0)
+        t = Thread(target=error_read)
+        t.daemon = True
+        t.start()
+        t.join(2)
+        if error == True:
+            return
         while self.isClosed() == False:
             print self.subproc.stdout.readline()
-    
+
     
 class ins:
     
@@ -52,6 +69,9 @@ class ins:
     
     def __init__(self, device = '/dev/ttyACM0'):
         self.device = device
+        
+    def __del__(self):
+        self.disconnect()
         
     def __out(self,msg):
         print(msg)
@@ -85,7 +105,10 @@ class ins:
     
     def readline(self):
         if self.isReadable():
-            return self.conn.readline()
+            output = "" # Reset output
+            while '\n' not in output: # If line not read correctly/buffered
+                output = output + self.conn.read(0x1) # Read byte by byte until full line is present
+            return ("{}".format(output).strip())
         return None
         
     def getConnection(self):
@@ -98,9 +121,6 @@ class ins:
         return self.conn.readable()
     
     def dump(self):
-        while self.conn.readable():
-            output = self.conn.readline() # Try and read line
-            while '\n' not in output: # If line not read correctly/buffered
-                output = output + self.conn.read(0x4) # Read byte by byte until full line is present
-            self.__out("{}".format(output).strip())
+        while self.isReadable():
+            self.__out(self.readline())
         
